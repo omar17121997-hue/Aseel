@@ -16,11 +16,13 @@
   <style>
     :root {
       --primary: #f43f5e;
-      --primary-dark: #e11d48;
-      --bg: radial-gradient(circle at top center, #fdf2f8 0%, #faf5ff 50%, #fffbeb 100%);
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --border: rgba(244, 63, 94, 0.25);
-      --text: #1e293b;
+      --primary-dark: #be123c;
+      --accent: #8b5cf6;
+      --bg: radial-gradient(circle at 50% 0%, #ffe4e6 0%, #f3e8ff 45%, #fffbeb 100%);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-border: rgba(244, 63, 94, 0.25);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
     }
 
     * {
@@ -33,161 +35,176 @@
 
     body {
       background: var(--bg);
-      color: var(--text);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 16px;
+      position: relative;
     }
 
     .container {
       width: 100%;
-      max-width: 450px;
+      max-width: 460px;
       background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 28px;
-      padding: 26px 18px;
-      box-shadow: 0 20px 45px -10px rgba(244, 63, 94, 0.18);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 32px;
+      padding: 28px 20px;
+      box-shadow: 0 25px 50px -12px rgba(244, 63, 94, 0.2), 0 10px 25px -5px rgba(139, 92, 246, 0.15);
       text-align: center;
+      position: relative;
     }
 
     .badge {
-      display: inline-block;
-      padding: 5px 14px;
-      background: #ffe4e6;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, #ffe4e6, #f3e8ff);
       border: 1px solid #fecdd3;
       border-radius: 999px;
-      color: #e11d48;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      color: #be123c;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(244, 63, 94, 0.1);
     }
 
     .main-title {
-      font-size: 1.55rem;
+      font-size: 1.65rem;
       font-weight: 900;
-      background: linear-gradient(135deg, #e11d48 0%, #9333ea 100%);
+      background: linear-gradient(135deg, #e11d48 0%, #7c3aed 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      line-height: 1.3;
     }
 
     .subtitle {
-      font-size: 0.85rem;
-      color: #64748b;
-      margin-bottom: 14px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
       font-weight: 600;
     }
 
     /* Progress bar */
     .progress-wrap {
       display: flex;
-      gap: 6px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 22px;
     }
 
     .prog-bar {
       flex: 1;
-      height: 6px;
-      background: #f1f5f9;
+      height: 7px;
+      background: #e2e8f0;
       border-radius: 999px;
+      transition: all 0.3s ease;
     }
 
     .prog-bar.active {
-      background: linear-gradient(90deg, #f43f5e, #a855f7);
+      background: linear-gradient(90deg, #f43f5e, #8b5cf6);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
     }
 
     .prog-bar.done {
       background: #10b981;
     }
 
-    /* Formal Message Box */
+    /* Formal Card Box */
     .formal-box {
-      background: #fff;
-      border: 1.5px solid #fce7f3;
-      border-radius: 20px;
-      padding: 18px 14px;
-      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
+      border: 2px solid #fecdd3;
+      border-radius: 24px;
+      padding: 20px 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.06);
     }
 
     .formal-box h3 {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 900;
       color: #be123c;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .formal-box p {
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       line-height: 1.7;
       color: #334155;
+      font-weight: 600;
     }
 
     .budget-tag {
       display: inline-block;
-      background: #fdf2f8;
+      background: #ffe4e6;
       border: 1.5px solid #f43f5e;
-      color: #e11d48;
+      color: #be123c;
       font-weight: 900;
-      padding: 1px 8px;
-      border-radius: 8px;
-      font-size: 1.1rem;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 1.15rem;
     }
 
-    /* Grid for selection cards */
+    /* Big choice cards */
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
     .card-btn {
       background: #ffffff;
       border: 2px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 18px 10px;
+      border-radius: 24px;
+      padding: 22px 12px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       width: 100%;
       outline: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
 
     .card-btn:active {
-      transform: scale(0.96);
+      transform: scale(0.95);
       border-color: #f43f5e;
       background: #fff1f2;
     }
 
     .card-icon {
-      font-size: 38px;
+      font-size: 42px;
     }
 
     .card-title {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 800;
       color: #1e293b;
     }
 
-    /* General Action Buttons */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       width: 100%;
-      padding: 14px 20px;
-      font-size: 1rem;
+      padding: 15px 22px;
+      font-size: 1.05rem;
       font-weight: 800;
-      border-radius: 18px;
+      border-radius: 20px;
       border: none;
       cursor: pointer;
       text-decoration: none;
       color: #fff;
+      transition: all 0.25s ease;
     }
 
     .btn:active {
@@ -196,7 +213,7 @@
 
     .btn-primary {
       background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
-      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.35);
+      box-shadow: 0 8px 25px rgba(244, 63, 94, 0.4);
     }
 
     .btn-secondary {
@@ -205,48 +222,58 @@
     }
 
     .btn-whatsapp {
-      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
-      margin-top: 12px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      margin-top: 14px;
+      font-size: 1.15rem;
+      animation: pulseWhatsApp 2s infinite;
+    }
+
+    @keyframes pulseWhatsApp {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
     }
 
     /* Terms alert banner */
     .terms-banner {
-      background: #faf5ff;
-      border: 1.5px solid #d8b4fe;
-      border-radius: 18px;
-      padding: 12px;
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      border: 2px solid #d8b4fe;
+      border-radius: 20px;
+      padding: 14px;
       text-align: right;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       line-height: 1.7;
       color: #581c87;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
     }
 
     /* Shopping Items */
     .shopping-btn {
       background: #fff;
       border: 2px solid #f1f5f9;
-      border-radius: 18px;
-      padding: 12px 14px;
-      margin-bottom: 8px;
+      border-radius: 20px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
       width: 100%;
       text-align: right;
+      transition: all 0.2s ease;
     }
 
     .shopping-btn.selected {
       border-color: #f43f5e;
       background: #fff1f2;
+      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1);
     }
 
     .check-box {
-      width: 24px;
-      height: 24px;
-      border-radius: 7px;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
       border: 2px solid #cbd5e1;
       display: flex;
       align-items: center;
@@ -266,87 +293,110 @@
     .custom-box {
       background: #fdf4ff;
       border: 1.5px solid #f0abfc;
-      border-radius: 16px;
-      padding: 12px;
-      margin: 12px 0 16px;
+      border-radius: 18px;
+      padding: 14px;
+      margin: 14px 0 18px;
       text-align: right;
     }
 
     .custom-textarea {
       width: 100%;
       border: 1.5px solid #e9d5ff;
-      border-radius: 12px;
-      padding: 10px;
-      font-size: 0.88rem;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 0.9rem;
       outline: none;
-      margin-top: 8px;
+      margin-top: 10px;
       resize: none;
       display: none;
       background: #fff;
     }
 
-    /* Cash Rejection Modal */
+    /* Popups (Modals) */
     .modal-overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(6px);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      z-index: 9999;
+      z-index: 999999;
     }
 
     .modal-content {
       background: #fff;
-      border: 3px solid #fda4af;
-      border-radius: 24px;
-      padding: 22px 18px;
+      border-radius: 28px;
+      padding: 26px 20px;
       max-width: 380px;
       width: 100%;
       text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      animation: popModal 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popModal {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     /* Summary Card */
     .summary-card {
       background: #fff;
       border: 2px dashed #f43f5e;
-      border-radius: 20px;
-      padding: 16px 14px;
+      border-radius: 24px;
+      padding: 18px 16px;
       text-align: right;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 0;
+      padding: 8px 0;
       border-bottom: 1px dashed #f1f5f9;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
     }
 
     .chips-box {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .chip {
       background: #fff1f2;
       border: 1px solid #fecdd3;
       color: #be123c;
-      padding: 3px 8px;
-      border-radius: 8px;
-      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 0.82rem;
       font-weight: 700;
+    }
+
+    .stamp-confirmed {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 2px solid #10b981;
+      color: #059669;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      background: #ecfdf5;
     }
   </style>
 
   <script>
-    // Navigation function that works 100% reliably
     function showPage(n) {
       document.getElementById('page-1').style.display = (n === 1 ? 'block' : 'none');
       document.getElementById('page-2').style.display = (n === 2 ? 'block' : 'none');
@@ -371,17 +421,23 @@
 
     var selectedItems = [];
 
+    // App Choice (Moves directly to Page 2)
     function chooseApp() {
-      // Moves directly to Page 2!
       showPage(2);
     }
 
+    // Cash Choice (Shows Funny Modal)
     function chooseCash() {
       document.getElementById('cash-modal').style.display = 'flex';
     }
 
     function closeCash() {
       document.getElementById('cash-modal').style.display = 'none';
+    }
+
+    function closeCashAndGoApp() {
+      document.getElementById('cash-modal').style.display = 'none';
+      showPage(2);
     }
 
     function selectProduct(btn, title) {
@@ -403,7 +459,7 @@
       var box = document.getElementById('summary-chips');
       box.innerHTML = '';
       if (selectedItems.length === 0) {
-        box.innerHTML = '<span style="font-size:0.8rem; color:#94a3b8;">لم يتم اختيار عناصر من القائمة</span>';
+        box.innerHTML = '<span style="font-size:0.85rem; color:#94a3b8;">لم يتم اختيار عناصر من القائمة</span>';
       } else {
         selectedItems.forEach(function(item) {
           var el = document.createElement('div');
@@ -428,14 +484,15 @@
     function onAgreeCheck() {
       var chk = document.getElementById('agree-check').checked;
       var btn = document.getElementById('submit-btn');
-      btn.style.opacity = chk ? '1' : '0.45';
+      btn.style.opacity = chk ? '1' : '0.5';
       btn.style.pointerEvents = chk ? 'auto' : 'none';
     }
 
+    // Finalize Agreement and generate WhatsApp link
     function finalizeAgreement() {
       try {
         if (typeof confetti === 'function') {
-          confetti({ particleCount: 90, spread: 70, origin: { y: 0.6 } });
+          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         }
       } catch (e) {}
 
@@ -446,18 +503,19 @@
         ? document.getElementById('custom-txt').value.trim() 
         : '';
       var itemsText = selectedItems.length > 0 ? selectedItems.join('، ') : 'لم يتم اختيار بنود عامة';
-      var customSection = customVal ? ('\\n• الاقتراح الخاص: "' + customVal + '"') : '';
+      var customSection = customVal ? ('\n• الاقتراح الخاص: "' + customVal + '"') : '';
 
-      var msg = "📜 *اعتماد اتفاقية الـ100 شيكل مع أسيل* ❤️\\n\\n" +
-                "أنا أسيل، أؤكد موافقتي الرسمية على الاتفاقية والبدء بشراء طلباتي! 👑\\n\\n" +
-                "🛍️ *المشتريات المعتمدة:*\\n" +
-                "• " + itemsText + customSection + "\\n\\n" +
-                "💰 *الميزانية:* 100 شيكل (ILS)\\n" +
-                "🤝 *طريقة التنفيذ:* شراء مباشر من طرفكم (النقدي مرفوض قطعاً 😂)\\n" +
-                "✅ *الحالة:* تم التوقيع والموافقة رسمياً!\\n\\n" +
+      var msg = "📜 *اعتماد اتفاقية الـ100 شيكل مع أسيل* ❤️\n\n" +
+                "أنا أسيل، أؤكد موافقتي الرسمية على الاتفاقية والبدء بشراء طلباتي! 👑\n\n" +
+                "🛍️ *المشتريات المعتمدة:*\n" +
+                "• " + itemsText + customSection + "\n\n" +
+                "💰 *الميزانية:* 100 شيكل (ILS)\n" +
+                "🤝 *طريقة التنفيذ:* شراء مباشر من طرفكم (النقدي مرفوض قطعاً 😂)\n" +
+                "✅ *الحالة:* تم التوقيع والموافقة رسمياً!\n\n" +
                 "يلا استعدوا وجهزوا الأغراض، مشترياتي بالطريق! ❤️✨";
 
-      document.getElementById('wa-btn').href = "https://wa.me/970598011080?text=" + encodeURIComponent(msg);
+      var waUrl = "https://wa.me/970598011080?text=" + encodeURIComponent(msg);
+      document.getElementById('wa-btn').href = waUrl;
     }
   </script>
 </head>
@@ -465,11 +523,11 @@
 
   <div class="container">
     
-    <div class="badge">⚖️ مرسوم مالي رسمي وعاطفي</div>
+    <div class="badge">⚖️ وثيقة مالية رسمية وودية جداً ✨</div>
     <h1 class="main-title">اتفاقية الـ100 شيكل مع أسيل ❤️</h1>
     <p class="subtitle" id="step-indicator">المرحلة الأولى: فحص العرض المالي (1/3)</p>
 
-    <!-- Progress -->
+    <!-- Progress Steps -->
     <div class="progress-wrap">
       <div id="bar-1" class="prog-bar active"></div>
       <div id="bar-2" class="prog-bar"></div>
@@ -487,7 +545,7 @@
         </p>
       </div>
 
-      <p style="font-size: 0.92rem; font-weight: 800; color: #475569; margin-bottom: 12px;">
+      <p style="font-size: 0.95rem; font-weight: 800; color: #475569; margin-bottom: 14px;">
         اضغطي على طريقة الاستلام المفضلة 👇
       </p>
 
@@ -509,58 +567,58 @@
     <!-- ================= PAGE 2 ================= -->
     <div id="page-2" style="display: none;">
       
-      <!-- Terms Banner at top of page 2 -->
+      <!-- Terms Banner -->
       <div class="terms-banner">
-        <b>مسموح عبر التطبيق، ولكن وفق الشروط:</b><br>
+        <b style="color: #7e22ce; font-size: 0.95rem;">مسموح عبر التطبيق، ولكن وفق الشروط:</b><br>
         1. ممنوع تحويل المبلغ لحسابك الشخصي ❌<br>
         2. إحنا بنشتري عنك مباشرة 🛍️<br>
         3. إلك حرية اختيار مشترياتك بالكامل ✨<br>
         4. الميزانية الإجمالية 100 شيكل فقط 💰
       </div>
 
-      <h2 style="font-size: 1.3rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
+      <h2 style="font-size: 1.35rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
         اختاري مشترياتك يا أسيل 🛍️
       </h2>
-      <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 14px;">
+      <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 14px;">
         إلك 100 شيكل، اختاري أكثر من خيار حسب رغبتك!
       </p>
 
       <div>
         <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء كاسة ☕')">
-          <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <span style="font-size: 1.25rem;">☕</span>
+          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
+            <span style="font-size: 1.4rem;">☕</span>
             <span>شراء كاسة</span>
           </div>
           <div class="check-box">✓</div>
         </button>
 
         <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء منتوفلي 🍫')">
-          <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <span style="font-size: 1.25rem;">🍫</span>
+          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
+            <span style="font-size: 1.4rem;">🍫</span>
             <span>شراء منتوفلي</span>
           </div>
           <div class="check-box">✓</div>
         </button>
 
         <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء إكسسوارات 💍')">
-          <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <span style="font-size: 1.25rem;">💍</span>
+          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
+            <span style="font-size: 1.4rem;">💍</span>
             <span>شراء إكسسوارات</span>
           </div>
           <div class="check-box">✓</div>
         </button>
 
         <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء أسبريه عرق 🥤')">
-          <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <span style="font-size: 1.25rem;">🥤</span>
+          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
+            <span style="font-size: 1.4rem;">🥤</span>
             <span>شراء أسبريه عرق</span>
           </div>
           <div class="check-box">✓</div>
         </button>
 
         <button type="button" class="shopping-btn" onclick="selectProduct(this, 'مشتريات أخرى 🎁')">
-          <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <span style="font-size: 1.25rem;">🎁</span>
+          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
+            <span style="font-size: 1.4rem;">🎁</span>
             <span>مشتريات أخرى</span>
           </div>
           <div class="check-box">✓</div>
@@ -569,8 +627,8 @@
 
       <!-- Custom Input -->
       <div class="custom-box">
-        <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #86198f; font-size: 0.88rem; cursor: pointer;">
-          <input type="checkbox" id="custom-chk" onchange="toggleCustom()" style="accent-color: #a855f7; width: 18px; height: 18px;">
+        <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #86198f; font-size: 0.9rem; cursor: pointer;">
+          <input type="checkbox" id="custom-chk" onchange="toggleCustom()" style="accent-color: #a855f7; width: 19px; height: 19px;">
           <span>خيارات أخرى لا تعجبني، عندي اقتراح خاص!</span>
         </label>
         <textarea id="custom-txt" class="custom-textarea" rows="3" placeholder="اكتبي شو نفسك نشتريلك..."></textarea>
@@ -590,57 +648,21 @@
     <div id="page-3" style="display: none;">
       
       <div id="pre-agree">
-        <h2 style="font-size: 1.35rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
+        <h2 style="font-size: 1.4rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
           إتمام الاتفاق 🤝❤️
         </h2>
-        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 14px;">
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 16px;">
           الملخص النهائي لبنود المعاهدة المالية الرسمية
         </p>
 
         <div class="summary-card">
           <div class="summary-row">
-            <span style="color: #64748b;">الميزانية:</span>
-            <span style="font-weight: 900; color: #e11d48;">100 شيكل (ILS)</span>
+            <span style="color: #64748b; font-weight: 700;">الميزانية:</span>
+            <span style="font-weight: 900; color: #e11d48; font-size: 1.05rem;">100 شيكل (ILS)</span>
           </div>
           <div class="summary-row">
-            <span style="color: #64748b;">طريقة الدفع:</span>
+            <span style="color: #64748b; font-weight: 700;">طريقة الدفع:</span>
             <span style="font-weight: 800;">شراء مباشر منا 🛍️</span>
           </div>
           <div class="summary-row">
-            <span style="color: #64748b;">التحويل النقدي:</span>
-            <span style="font-weight: 800; color: #be123c;">غير مسموح ❌</span>
-          </div>
-
-          <div style="margin-top: 8px; font-size: 0.82rem; font-weight: 700; color: #475569;">
-            المشتريات المعتمدة لأسيل:
-          </div>
-          <div class="chips-box" id="summary-chips"></div>
-
-          <div id="summary-custom-wrap" style="display: none; margin-top: 8px; padding-top: 6px; border-top: 1px dashed #e2e8f0; font-size: 0.85rem; color: #7e22ce;">
-            <b>الاقتراح الخاص:</b> <span id="summary-custom-val"></span>
-          </div>
-        </div>
-
-        <div style="background: #fff; border: 1.5px solid #fecdd3; border-radius: 16px; padding: 12px; margin-bottom: 14px; text-align: right;">
-          <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.92rem; color: #1e293b; cursor: pointer;">
-            <input type="checkbox" id="agree-check" onchange="onAgreeCheck()" style="accent-color: #f43f5e; width: 20px; height: 20px;">
-            <span>أؤكد موافقتي على الاتفاق.</span>
-          </label>
-        </div>
-
-        <button type="button" id="submit-btn" class="btn btn-primary" style="opacity: 0.45; pointer-events: none;" onclick="finalizeAgreement()">
-          <span>❤️ اتفقنا!</span>
-        </button>
-
-        <button type="button" class="btn btn-secondary" style="margin-top: 8px;" onclick="showPage(2)">
-          تعديل الاختيارات
-        </button>
-      </div>
-
-      <!-- Post-Agreement Confirmation -->
-      <div id="post-agree" style="display: none;">
-        <div style="display: inline-block; padding: 5px 14px; border: 2px solid #10b981; color: #059669; border-radius: 12px; font-weight: 900; font-size: 0.85rem; margin-bottom: 12px; background: #ecfdf5;">
-          ✓ تم اعتماد الاتفاق رسمياً وبالمحبة
-        </div>
-        <div style="font-size: 46px; margin-bottom: 6px;">🎉</div>
-        <h2 style="font-size: 1.5rem; font-weight: 900; color: #1e293b; marg
+            <span style="color: #64748b

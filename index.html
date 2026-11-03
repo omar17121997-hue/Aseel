@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>اتفاقية الـ100 شيكل مع أسيل ❤️</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #f43f5e;
+      --primary-dark: #e11d48;
+      --accent: #a855f7;
+      --bg-gradient: radial-gradient(circle at top center, #fdf2f8 0%, #faf5ff 50%, #fffbeb 100%);
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --border-color: rgba(244, 63, 94, 0.25);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-color);
+      border-radius: 28px;
+      padding: 26px 20px;
+      box-shadow: 0 20px 45px -10px rgba(244, 63, 94, 0.15);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: #ffe4e6;
+      border: 1px solid #fecdd3;
+      border-radius: 999px;
+      color: #e11d48;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .main-title {
+      font-size: 1.55rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #e11d48 0%, #9333ea 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .progress-bar-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 6px;
+      background: #f1f5f9;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+
+    .progress-step.active {
+      background: linear-gradient(90deg, #f43f5e, #a855f7);
+    }
+
+    .progress-step.done {
+      background: #10b981;
+    }
+
+    /* Pages */
+    .step-page {
+      display: none;
+    }
+
+    .formal-box {
+      background: #fff;
+      border: 1.5px solid #fce7f3;
+      border-radius: 20px;
+      padding: 18px 14px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .formal-box h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #be123c;
+      margin-bottom: 6px;
+    }
+
+    .formal-box p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .budget-tag {
+      display: inline-block;
+      background: #fdf2f8;
+      border: 1.5px solid #f43f5e;
+      color: #e11d48;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* True buttons for mobile responsiveness */
+    button.choice-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 18px 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    button.choice-card:active {
+      transform: scale(0.96);
+      border-color: #f43f5e;
+      background: #fff1f2;
+    }
+
+    .card-icon {
+      font-size: 36px;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 800;
+      border-radius: 18px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.35);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
+      margin-top: 12px;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    button.shopping-item {
+      background: #fff;
+      border: 2px solid #f1f5f9;
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      width: 100%;
+      text-align: right;
+    }
+
+    button.shopping-item.selected {
+      border-color: #f43f5e;
+      background: #fff1f2;
+    }
+
+    .item-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .checkbox-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: transparent;
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    button.shopping-item.selected .checkbox-box {
+      background: #f43f5e;
+      border-color: #f43f5e;
+      color: #fff;
+    }
+
+    .custom-box {
+      background: #fdf4ff;
+      border: 1.5px solid #f0abfc;
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+      text-align: right;
+    }
+
+    .custom-textarea {
+      width: 100%;
+      border: 1.5px solid #e9d5ff;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.88rem;
+      outline: none;
+      margin-top: 8px;
+      resize: none;
+      background: #fff;
+      display: none;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 24px;
+      padding: 22px 18px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .summary-card {
+      background: #fff;
+      border: 2px dashed #f43f5e;
+      border-radius: 20px;
+      padding: 16px 14px;
+      text-align: right;
+      margin-bottom: 16px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px dashed #f1f5f9;
+      font-size: 0.88rem;
+    }
+
+    .selected-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #be123c;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .stamp-confirmed {
+      display: inline-block;
+      padding: 5px 14px;
+      border: 2px solid #10b981;
+      color: #059669;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      background: #ecfdf5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="badge">⚖️ مرسوم مالي رسمي وعاطفي</div>
+    <h1 class="main-title">اتفاقية الـ100 شيكل مع أسيل ❤️</h1>
+    <p class="subtitle" id="step-indicator">المرحلة الأولى: فحص العرض المالي (1/3)</p>
+
+    <!-- Progress -->
+    <div class="progress-bar-container">
+      <div id="prog-1" class="progress-step active"></div>
+      <div id="prog-2" class="progress-step"></div>
+      <div id="prog-3" class="progress-step"></div>
+    </div>
+
+    <!-- ================= PAGE 1 ================= -->
+    <div id="page-1" class="step-page" style="display: block;">
+      <div class="formal-box">
+        <h3>عزيزتنا أسيل ❤️</h3>
+        <p>
+          بعد التشاور والمداولات، قررنا تقديم عرض مالي بقيمة 
+          <span class="budget-tag">100 شيكل</span>، 
+          تقديراً إلك وحرصاً على إسعادك.
+        </p>
+      </div>
+
+      <p style="font-size: 0.92rem; font-weight: 800; color: #475569; margin-bottom: 12px;">
+        اضغطي على طريقة الاستلام المفضلة 👇
+      </p>
+
+      <div class="cards-grid">
+        <!-- Cash Button -->
+        <button type="button" class="choice-card" onclick="openCashModal()">
+          <div class="card-icon">💵</div>
+          <div class="card-title">نقداً (كاش)</div>
+        </button>
+
+        <!-- App Button -->
+        <button type="button" class="choice-card" onclick="openAppModal()">
+          <div class="card-icon">📱</div>
+          <div class="card-title">عبر التطبيق</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= PAGE 2 ================= -->
+    <div id="page-2" class="step-page">
+      <h2 style="font-size: 1.3rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
+        اختاري مشترياتك يا أسيل 🛍️
+      </h2>
+      <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 14px;">
+        إلك 100 شيكل، اختاري أكثر من خيار حسب رغبتك!
+      </p>
+
+      <div id="shopping-list">
+        <button type="button" class="shopping-item" onclick="toggleItem(this, 'شراء كاسة ☕')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">☕</span>
+            <span>شراء كاسة</span>
+          </div>
+          <div class="checkbox-box">✓</div>
+        </button>
+
+        <button type="button" class="shopping-item" onclick="toggleItem(this, 'شراء منتوفلي 🍫')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">🍫</span>
+            <span>شراء منتوفلي</span>
+          </div>
+          <div class="checkbox-box">✓</div>
+        </button>
+
+        <button type="button" class="shopping-item" onclick="toggleItem(this, 'شراء إكسسوارات 💍')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">💍</span>
+            <span>شراء إكسسوارات</span>
+          </div>
+          <div class="checkbox-box">✓</div>
+        </button>
+
+        <button type="button" class="shopping-item" onclick="toggleItem(this, 'شراء أسبريه عرق 🥤')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">🥤</span>
+            <span>شراء أسبريه عرق</span>
+          </div>
+          <div class="checkbox-box">✓</div>
+        </button>
+
+        <button type="button" class="shopping-item" onclick="toggleItem(this, 'مشتريات أخرى 🎁')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">🎁</span>
+            <span>مشتريات أخرى</span>
+          </div>
+          <div class="checkbox-box">✓</div>
+        </button>
+      </div>
+
+      <!-- Custom Proposal -->
+      <div class="custom-box">
+        <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #86198f; font-size: 0.88rem; cursor: pointer;">
+          <input type="checkbox" id="custom-toggle" onchange="toggleCustomArea()" style="accent-color: #a855f7; width: 18px; height: 18px;">
+          <span>خيارات أخرى لا تعجبني، عندي اقتراح خاص!</span>
+        </label>
+        <textarea id="custom-text" class="custom-textarea" rows="3" placeholder="اكتبي شو نفسك نشتريلك..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn btn-secondary" style="width: 35%;" onclick="navigateTo(1)">
+          رجوع
+        </button>
+        <button type="button" class="btn btn-primary" style="flex: 1;" onclick="navigateTo(3)">
+          التالي للاتفاق 👈
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= PAGE 3 ================= -->
+    <div id="page-3" class="step-page">
+      <div id="pre-celebration">
+        <h2 style="font-size: 1.35rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
+          إتمام الاتفاق 🤝❤️
+        </h2>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 14px;">
+          الملخص النهائي لبنود المعاهدة المالية الرسمية
+        </p>
+
+        <div class="summary-card">
+          <div class="summary-row">
+            <span style="color: #64748b; font-weight: 600;">الميزانية:</span>
+            <span style="font-weight: 900; color: #e11d48;">100 شيكل (ILS)</span>
+          </div>
+          <div class="summary-row">
+            <span style="color: #64748b; font-weight: 600;">طريقة الدفع:</span>
+            <span style="font-weight: 800;">شراء مباشر منا 🛍️</span>
+          </div>
+          <div class="summary-row">
+            <span style="color: #64748b; font-weight: 600;">التحويل النقدي:</span>
+            <span style="font-weight: 800; color: #be123c;">غير مسموح ❌</span>
+          </div>
+
+          <div style="margin-top: 8px; font-size: 0.82rem; font-weight: 700; color: #475569;">
+            المشتريات المعتمدة لأسيل:
+          </div>
+          <div class="selected-chips" id="final-items-container"></div>
+
+          <div id="final-custom-container" style="display: none; margin-top: 8px; padding-top: 6px; border-top: 1px dashed #e2e8f0; font-size: 0.85rem; color: #7e22ce;">
+            <b>الاقتراح الخاص:</b> <span id="final-custom-text"></span>
+          </div>
+        </div>
+
+        <div style="background: #fff; border: 1.5px solid #fecdd3; border-radius: 16px; padding: 12px; margin-bottom: 14px; text-align: right;">
+          <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.92rem; color: #1e293b; cursor: pointer;">
+            <input type="checkbox" id="agree-checkbox" onchange="toggleAgreeButton()" style="accent-color: #f43f5e; width: 20px; height: 20px;">
+            <span>أؤكد موافقتي على الاتفاق.</span>
+          </label>
+        </div>
+
+        <button type="button" id="agree-final-btn" class="btn btn-primary" style="opacity: 0.45; pointer-events: none;" onclick="celebrate()">
+          <span>❤️ اتفقنا!</span>
+        </button>
+
+        <button type="button" class="btn btn-secondary" style="margin-top: 8px;" onclick="navigateTo(2)">
+          تعديل الاختيارات
+        </button>
+      </div>
+
+      <!-- Celebratory Success -->
+      <div id="post-celebration" style="display: none;">
+        <div class="stamp-confirmed">✓ تم اعتماد الاتفاق رسمياً وبالمحبة</div>
+        <div style="font-size: 46px; margin-bottom: 6px;">🎉</div>
+        <h2 style="font-size: 1.5rem; font-weight: 900; color: #1e293b; margin-bottom: 6px;">
+          مبرووووك يا أسيل! 🎉
+        </h2>
+        <p style="font-size: 1rem; font-weight: 700; color: #059669; line-height: 1.7; margin-bottom: 16px;">
+          تم اعتماد طلبك بنجاح!<br>
+          استعدي، مشترياتك بالطريق ❤️
+        </p>
+
+        <a id="whatsapp-link" href="#" target="_blank" class="btn btn-whatsapp">
+          <span>إرسال الاتفاق عبر واتساب 📲</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal 1: Cash Rejection -->
+  <div id="cash-modal" class="modal-overlay">
+    <div class="modal-content" style="border: 3px solid #fda4af;">
+      <div style="font-size: 44px; margin-bottom: 4px;">🚫🤣</div>
+      <h3 style="font-size: 1.25rem; font-weight: 900; color: #e11d48; margin-bottom: 8px;">
+        مرفوض رفضاً قاطعاً! 😂
+      </h3>
+      <p style="font-size: 0.92rem; line-height: 1.7; color: #334155; margin-bottom: 16px;">
+        شو مفكرة الموضوع صراف آلي؟<br>
+        <b>النقدي ممنوع منعاً باتاً!</b><br>
+        القرار نهائي وغير قابل للاستئناف 🤣
+      </p>
+      <button type="button" class="btn btn-primary" onclick="closeCashModal()">
+        فهمت، خلينا ع التطبيق 😅
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal 2: App Terms & Direct Transition -->
+  <div id="app-modal" class="modal-overlay">
+    <div class="modal-content" style="border: 3px solid #d8b4fe; text-align: right;">
+      <div style="text-align: center; font-size: 40px; margin-bottom: 4px;">📱✨</div>
+      <h3 style="font-size: 1.15rem; font-weight: 900; color: #7e22ce; margin-bottom: 10px; text-align: center;">
+        مسموح، ولكن وفق الشروط والأحكام:
+      </h3>
+      <div style="background: #faf5ff; border: 1px solid #f3e8ff; border-radius: 14px; padding: 12px; margin-bottom: 16px; font-size: 0.88rem; line-height: 1.8; color: #4a044e;">
+        1. ممنوع تحويل المبلغ إلى حسابك الشخصي ❌<br>
+        2. إحنا بنقوم بالشراء عنك مباشرة 🛍️<br>
+        3. إلك حرية اختيار مشترياتك كاملة ✨<br>
+        4. الميزانية الإجمالية 100 شيكل فقط 💰
+      </div>
+      <button type="button" class="btn btn-primary" onclick="agreeAndGoToPage2()">
+        <span>موافقة والانتقال للاختيارات ❤️</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    var selectedShopping = [];
+
+    // Navigation function
+    function navigateTo(pageNum) {
+      var pages = document.querySelectorAll('.step-page');
+      for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+      }
+      
+      var target = document.getElementById('page-' + pageNum);
+      if (target) {
+        target.style.display = 'block';
+      }
+
+      for (var j = 1; j <= 3; j++) {
+        var bar = document.getElementById('prog-' + j);
+        if (bar) {
+          bar.className = 'progress-step';
+          if (j < pageNum) bar.classList.add('done');
+          if (j === pageNum) bar.classList.add('active');
+        }
+      }
+
+      var subtitles = {
+        1: 'المرحلة الأولى: فحص العرض المالي (1/3)',
+        2: 'المرحلة الثانية: تحديد المشتريات (2/3)',
+        3: 'المرحلة النهائية: إبرام المعاهدة (3/3)'
+      };
+      document.getElementById('step-indicator').innerText = subtitles[pageNum] || '';
+
+      if (pageNum === 3) {
+        renderSummary();
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function openCashModal() {
+      document.getElementById('cash-modal').style.display = 'flex';
+    }
+
+    function closeCashModal() {
+      document.getElementById('cash-modal').style.display = 'none';
+    }
+
+    function openAppModal() {
+      document.getElementById('app-modal').style.display = 'flex';
+    }
+
+    function agreeAndGoToPage2() {
+      document.getElementById('app-modal').style.display = 'none';
+      navigateTo(2);
+    }
+
+    function toggleItem(btn, title) {
+      btn.classList.toggle('selected');
+      if (btn.classList.contains('selected')) {
+        if (selectedShopping.indexOf(title) === -1) {
+          selectedShopping.push(title);
+        }
+      } else {
+        selectedShopping = selectedShopping.filter(function(i) { return i !== title; });
+      }
+    }
+
+    function toggleCustomArea() {
+      var checked = document.getElementById('custom-toggle').checked;
+      var area = document.getElementById('custom-text');
+      area.style.display = checked ? 'block' : 'none';
+      if (checked) area.focus();
+    }
+
+    function renderSummary() {
+      var container = document.getElementById('final-items-container');
+      container.innerHTML = '';
+
+      if (selectedShopping.length === 0) {
+        container.innerHTML = '<span style="font-size:0.82rem; color:#94a3b8;">لم يتم اختيار عناصر من القائمة</span>';
+      } else {
+        for (var i = 0; i < selectedShopping.length; i++) {
+          var chip = document.createElement('div');
+          chip.className = 'chip';
+          chip.innerText = selectedShopping[i];
+   

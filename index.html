@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <title>اتفاقية الـ100 شيكل مع أسيل ❤️</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,12 +13,12 @@
   <style>
     :root {
       --primary: #f43f5e;
-      --primary-dark: #be123c;
-      --accent: #8b5cf6;
-      --bg: radial-gradient(circle at 50% 0%, #ffe4e6 0%, #f3e8ff 45%, #fffbeb 100%);
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --card-border: rgba(244, 63, 94, 0.25);
-      --text-main: #0f172a;
+      --primary-dark: #e11d48;
+      --accent: #a855f7;
+      --bg-gradient: radial-gradient(circle at top center, #fdf2f8 0%, #faf5ff 50%, #fffbeb 100%);
+      --card-bg: rgba(255, 255, 255, 0.98);
+      --border-color: rgba(244, 63, 94, 0.25);
+      --text-main: #1e293b;
       --text-muted: #64748b;
     }
 
@@ -29,31 +26,30 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Cairo', system-ui, sans-serif;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background: var(--bg);
+      background: var(--bg-gradient);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      position: relative;
+      overflow-x: hidden;
     }
 
     .container {
       width: 100%;
       max-width: 460px;
       background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      border-radius: 32px;
-      padding: 28px 20px;
-      box-shadow: 0 25px 50px -12px rgba(244, 63, 94, 0.2), 0 10px 25px -5px rgba(139, 92, 246, 0.15);
+      border: 1.5px solid var(--border-color);
+      border-radius: 28px;
+      padding: 26px 20px;
+      box-shadow: 0 20px 45px -10px rgba(244, 63, 94, 0.15);
       text-align: center;
       position: relative;
     }
@@ -62,106 +58,113 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
-      background: linear-gradient(135deg, #ffe4e6, #f3e8ff);
+      padding: 5px 12px;
+      background: #ffe4e6;
       border: 1px solid #fecdd3;
       border-radius: 999px;
-      color: #be123c;
-      font-size: 0.82rem;
-      font-weight: 800;
+      color: #e11d48;
+      font-size: 0.8rem;
+      font-weight: 700;
       margin-bottom: 10px;
-      box-shadow: 0 2px 8px rgba(244, 63, 94, 0.1);
     }
 
     .main-title {
-      font-size: 1.65rem;
+      font-size: 1.55rem;
       font-weight: 900;
-      background: linear-gradient(135deg, #e11d48 0%, #7c3aed 100%);
+      background: linear-gradient(135deg, #e11d48 0%, #9333ea 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       line-height: 1.3;
     }
 
     .subtitle {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
-      font-weight: 600;
+      margin-bottom: 16px;
     }
 
-    /* Progress bar */
-    .progress-wrap {
+    .progress-bar-container {
       display: flex;
       gap: 8px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
-    .prog-bar {
+    .progress-step {
       flex: 1;
-      height: 7px;
-      background: #e2e8f0;
+      height: 6px;
+      background: #f1f5f9;
       border-radius: 999px;
       transition: all 0.3s ease;
     }
 
-    .prog-bar.active {
-      background: linear-gradient(90deg, #f43f5e, #8b5cf6);
-      box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
+    .progress-step.active {
+      background: linear-gradient(90deg, #f43f5e, #a855f7);
     }
 
-    .prog-bar.done {
+    .progress-step.done {
       background: #10b981;
     }
 
-    /* Formal Card Box */
+    .step-page {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .step-page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .formal-box {
-      background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
-      border: 2px solid #fecdd3;
-      border-radius: 24px;
-      padding: 20px 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.06);
+      background: #fff;
+      border: 1.5px solid #fce7f3;
+      border-radius: 20px;
+      padding: 18px 14px;
+      margin-bottom: 18px;
+      text-align: center;
     }
 
     .formal-box h3 {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 900;
       color: #be123c;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .formal-box p {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       line-height: 1.7;
       color: #334155;
-      font-weight: 600;
     }
 
     .budget-tag {
       display: inline-block;
-      background: #ffe4e6;
+      background: #fdf2f8;
       border: 1.5px solid #f43f5e;
-      color: #be123c;
+      color: #e11d48;
       font-weight: 900;
-      padding: 2px 10px;
-      border-radius: 10px;
-      font-size: 1.15rem;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 1.1rem;
     }
 
-    /* Big choice cards */
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
       margin-bottom: 14px;
     }
 
-    .card-btn {
+    button.choice-card {
       background: #ffffff;
       border: 2px solid #e2e8f0;
-      border-radius: 24px;
-      padding: 22px 12px;
+      border-radius: 20px;
+      padding: 18px 10px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -169,42 +172,78 @@
       gap: 8px;
       width: 100%;
       outline: none;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
     }
 
-    .card-btn:active {
-      transform: scale(0.95);
-      border-color: #f43f5e;
-      background: #fff1f2;
+    button.choice-card:active {
+      transform: scale(0.96);
+    }
+
+    button.choice-card.selected {
+      border-color: #a855f7;
+      background: #faf5ff;
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
     }
 
     .card-icon {
-      font-size: 42px;
+      font-size: 36px;
     }
 
     .card-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: #1e293b;
     }
 
-    /* Buttons */
+    .terms-card {
+      background: #faf5ff;
+      border: 2px solid #d8b4fe;
+      border-radius: 20px;
+      padding: 16px;
+      text-align: right;
+      margin-top: 14px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .terms-card h4 {
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: #7e22ce;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .terms-card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 14px;
+    }
+
+    .terms-card li {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: #4a044e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       width: 100%;
-      padding: 15px 22px;
-      font-size: 1.05rem;
+      padding: 14px 20px;
+      font-size: 1rem;
       font-weight: 800;
-      border-radius: 20px;
+      border-radius: 18px;
       border: none;
       cursor: pointer;
       text-decoration: none;
       color: #fff;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
     }
 
     .btn:active {
@@ -213,7 +252,13 @@
 
     .btn-primary {
       background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
-      box-shadow: 0 8px 25px rgba(244, 63, 94, 0.4);
+      box-shadow: 0 6px 20px rgba(244, 63, 94, 0.35);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
+      margin-top: 12px;
     }
 
     .btn-secondary {
@@ -221,38 +266,10 @@
       color: #475569;
     }
 
-    .btn-whatsapp {
-      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-      margin-top: 14px;
-      font-size: 1.15rem;
-      animation: pulseWhatsApp 2s infinite;
-    }
-
-    @keyframes pulseWhatsApp {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-    }
-
-    /* Terms alert banner */
-    .terms-banner {
-      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
-      border: 2px solid #d8b4fe;
-      border-radius: 20px;
-      padding: 14px;
-      text-align: right;
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: #581c87;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
-    }
-
-    /* Shopping Items */
-    .shopping-btn {
+    button.shopping-item {
       background: #fff;
       border: 2px solid #f1f5f9;
-      border-radius: 20px;
+      border-radius: 18px;
       padding: 14px 16px;
       margin-bottom: 10px;
       display: flex;
@@ -264,16 +281,24 @@
       transition: all 0.2s ease;
     }
 
-    .shopping-btn.selected {
+    button.shopping-item.selected {
       border-color: #f43f5e;
       background: #fff1f2;
-      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1);
     }
 
-    .check-box {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
+    .item-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .checkbox-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
       border: 2px solid #cbd5e1;
       display: flex;
       align-items: center;
@@ -281,228 +306,252 @@
       background: #fff;
       color: transparent;
       font-weight: 900;
+      font-size: 0.85rem;
     }
 
-    .shopping-btn.selected .check-box {
+    button.shopping-item.selected .checkbox-box {
       background: #f43f5e;
       border-color: #f43f5e;
       color: #fff;
     }
 
-    /* Custom suggestion box */
     .custom-box {
       background: #fdf4ff;
       border: 1.5px solid #f0abfc;
       border-radius: 18px;
-      padding: 14px;
-      margin: 14px 0 18px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
       text-align: right;
     }
 
     .custom-textarea {
       width: 100%;
       border: 1.5px solid #e9d5ff;
-      border-radius: 14px;
-      padding: 12px;
-      font-size: 0.9rem;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.88rem;
       outline: none;
-      margin-top: 10px;
+      margin-top: 8px;
       resize: none;
-      display: none;
       background: #fff;
+      display: none;
     }
 
-    /* Popups (Modals) */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(6px);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      z-index: 999999;
+      z-index: 9999;
     }
 
     .modal-content {
       background: #fff;
-      border-radius: 28px;
-      padding: 26px 20px;
+      border-radius: 24px;
+      padding: 24px 20px;
       max-width: 380px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-      animation: popModal 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      animation: zoomIn 0.2s ease;
     }
 
-    @keyframes popModal {
-      from { transform: scale(0.85); opacity: 0; }
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
 
-    /* Summary Card */
     .summary-card {
       background: #fff;
       border: 2px dashed #f43f5e;
-      border-radius: 24px;
-      padding: 18px 16px;
+      border-radius: 20px;
+      padding: 16px 14px;
       text-align: right;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 0;
+      padding: 6px 0;
       border-bottom: 1px dashed #f1f5f9;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
     }
 
-    .chips-box {
+    .selected-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .chip {
       background: #fff1f2;
       border: 1px solid #fecdd3;
       color: #be123c;
-      padding: 4px 10px;
-      border-radius: 10px;
-      font-size: 0.82rem;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
       font-weight: 700;
     }
 
     .stamp-confirmed {
       display: inline-block;
-      padding: 6px 16px;
+      padding: 5px 14px;
       border: 2px solid #10b981;
       color: #059669;
-      border-radius: 14px;
+      border-radius: 12px;
       font-weight: 900;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       margin-bottom: 14px;
       background: #ecfdf5;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
   </style>
 
   <script>
-    function showPage(n) {
-      document.getElementById('page-1').style.display = (n === 1 ? 'block' : 'none');
-      document.getElementById('page-2').style.display = (n === 2 ? 'block' : 'none');
-      document.getElementById('page-3').style.display = (n === 3 ? 'block' : 'none');
+    var selectedShopping = [];
 
-      document.getElementById('bar-1').className = 'prog-bar ' + (n >= 1 ? (n > 1 ? 'done' : 'active') : '');
-      document.getElementById('bar-2').className = 'prog-bar ' + (n >= 2 ? (n > 2 ? 'done' : 'active') : '');
-      document.getElementById('bar-3').className = 'prog-bar ' + (n === 3 ? 'active' : '');
+    // Global navigation function
+    window.navigateTo = function(pageNum) {
+      document.querySelectorAll('.step-page').forEach(function(el) {
+        el.classList.remove('active');
+        el.style.display = 'none';
+      });
 
-      var titles = {
+      var target = document.getElementById('page-' + pageNum);
+      if (target) {
+        target.classList.add('active');
+        target.style.display = 'block';
+      }
+
+      for (var j = 1; j <= 3; j++) {
+        var bar = document.getElementById('prog-' + j);
+        if (bar) {
+          bar.className = 'progress-step';
+          if (j < pageNum) bar.classList.add('done');
+          if (j === pageNum) bar.classList.add('active');
+        }
+      }
+
+      var subtitles = {
         1: 'المرحلة الأولى: فحص العرض المالي (1/3)',
         2: 'المرحلة الثانية: تحديد المشتريات (2/3)',
         3: 'المرحلة النهائية: إبرام المعاهدة (3/3)'
       };
-      document.getElementById('step-indicator').innerText = titles[n] || '';
+      document.getElementById('step-indicator').innerText = subtitles[pageNum] || '';
 
-      if (n === 3) {
-        buildSummary();
+      if (pageNum === 3) {
+        window.renderSummary();
       }
+
       window.scrollTo(0, 0);
-    }
+    };
 
-    var selectedItems = [];
-
-    // App Choice (Moves directly to Page 2)
-    function chooseApp() {
-      showPage(2);
-    }
-
-    // Cash Choice (Shows Funny Modal)
-    function chooseCash() {
+    window.openCashModal = function() {
       document.getElementById('cash-modal').style.display = 'flex';
-    }
+    };
 
-    function closeCash() {
+    window.closeCashModal = function() {
       document.getElementById('cash-modal').style.display = 'none';
-    }
+      window.selectAppMode(); // Direct to app terms automatically
+    };
 
-    function closeCashAndGoApp() {
-      document.getElementById('cash-modal').style.display = 'none';
-      showPage(2);
-    }
+    window.selectAppMode = function() {
+      document.getElementById('card-app-btn').classList.add('selected');
+      document.getElementById('terms-section').style.display = 'block';
+      document.getElementById('terms-section').scrollIntoView({ behavior: 'smooth' });
+    };
 
-    function selectProduct(btn, title) {
+    window.toggleItem = function(btn, title) {
       btn.classList.toggle('selected');
       if (btn.classList.contains('selected')) {
-        if (selectedItems.indexOf(title) === -1) selectedItems.push(title);
+        if (selectedShopping.indexOf(title) === -1) {
+          selectedShopping.push(title);
+        }
       } else {
-        selectedItems = selectedItems.filter(function(x) { return x !== title; });
+        selectedShopping = selectedShopping.filter(function(i) { return i !== title; });
       }
-    }
+    };
 
-    function toggleCustom() {
-      var chk = document.getElementById('custom-chk').checked;
-      document.getElementById('custom-txt').style.display = chk ? 'block' : 'none';
-      if (chk) document.getElementById('custom-txt').focus();
-    }
+    window.toggleCustomArea = function() {
+      var checked = document.getElementById('custom-toggle').checked;
+      var area = document.getElementById('custom-text');
+      area.style.display = checked ? 'block' : 'none';
+      if (checked) area.focus();
+    };
 
-    function buildSummary() {
-      var box = document.getElementById('summary-chips');
-      box.innerHTML = '';
-      if (selectedItems.length === 0) {
-        box.innerHTML = '<span style="font-size:0.85rem; color:#94a3b8;">لم يتم اختيار عناصر من القائمة</span>';
+    window.renderSummary = function() {
+      var container = document.getElementById('final-items-container');
+      container.innerHTML = '';
+
+      if (selectedShopping.length === 0) {
+        container.innerHTML = '<span style="font-size:0.82rem; color:#94a3b8;">لم يتم تحديد خيارات (اختيار حر عند الشراء)</span>';
       } else {
-        selectedItems.forEach(function(item) {
-          var el = document.createElement('div');
-          el.className = 'chip';
-          el.innerText = item;
-          box.appendChild(el);
+        selectedShopping.forEach(function(item) {
+          var chip = document.createElement('div');
+          chip.className = 'chip';
+          chip.innerText = item;
+          container.appendChild(chip);
         });
       }
 
-      var customVal = document.getElementById('custom-chk').checked 
-        ? document.getElementById('custom-txt').value.trim() 
-        : '';
-      var customBox = document.getElementById('summary-custom-wrap');
-      if (customVal) {
-        customBox.style.display = 'block';
-        document.getElementById('summary-custom-val').innerText = customVal;
+      var customCheck = document.getElementById('custom-toggle').checked;
+      var customVal = document.getElementById('custom-text').value.trim();
+      var customContainer = document.getElementById('final-custom-container');
+
+      if (customCheck && customVal) {
+        customContainer.style.display = 'block';
+        document.getElementById('final-custom-text').innerText = customVal;
       } else {
-        customBox.style.display = 'none';
+        customContainer.style.display = 'none';
       }
-    }
+    };
 
-    function onAgreeCheck() {
-      var chk = document.getElementById('agree-check').checked;
-      var btn = document.getElementById('submit-btn');
-      btn.style.opacity = chk ? '1' : '0.5';
-      btn.style.pointerEvents = chk ? 'auto' : 'none';
-    }
+    window.handleAgreeClick = function() {
+      var checked = document.getElementById('agree-checkbox').checked;
+      var checkContainer = document.getElementById('checkbox-container');
+      
+      if (!checked) {
+        // Funny shake alert if user clicks without checking the box
+        checkContainer.style.animation = 'shake 0.4s ease';
+        setTimeout(function() { checkContainer.style.animation = ''; }, 400);
+        document.getElementById('agree-alert').style.display = 'block';
+        return;
+      }
 
-    // Finalize Agreement and generate WhatsApp link
-    function finalizeAgreement() {
+      document.getElementById('agree-alert').style.display = 'none';
+      window.celebrate();
+    };
+
+    window.celebrate = function() {
       try {
         if (typeof confetti === 'function') {
-          confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+          confetti({ particleCount: 90, spread: 65, origin: { y: 0.6 } });
         }
       } catch (e) {}
 
-      document.getElementById('pre-agree').style.display = 'none';
-      document.getElementById('post-agree').style.display = 'block';
+      document.getElementById('pre-celebration').style.display = 'none';
+      document.getElementById('post-celebration').style.display = 'block';
 
-      var customVal = document.getElementById('custom-chk').checked 
-        ? document.getElementById('custom-txt').value.trim() 
+      var customVal = document.getElementById('custom-toggle').checked 
+        ? document.getElementById('custom-text').value.trim() 
         : '';
-      var itemsText = selectedItems.length > 0 ? selectedItems.join('، ') : 'لم يتم اختيار بنود عامة';
+
+      var itemsText = selectedShopping.length > 0 
+        ? selectedShopping.join('، ') 
+        : 'اختيار حر ومفتوح';
+
       var customSection = customVal ? ('\n• الاقتراح الخاص: "' + customVal + '"') : '';
 
       var msg = "📜 *اعتماد اتفاقية الـ100 شيكل مع أسيل* ❤️\n\n" +
@@ -514,28 +563,27 @@
                 "✅ *الحالة:* تم التوقيع والموافقة رسمياً!\n\n" +
                 "يلا استعدوا وجهزوا الأغراض، مشترياتي بالطريق! ❤️✨";
 
-      var waUrl = "https://wa.me/970598011080?text=" + encodeURIComponent(msg);
-      document.getElementById('wa-btn').href = waUrl;
-    }
+      document.getElementById('whatsapp-link').href = "https://wa.me/970598011080?text=" + encodeURIComponent(msg);
+    };
   </script>
 </head>
 <body>
 
   <div class="container">
     
-    <div class="badge">⚖️ وثيقة مالية رسمية وودية جداً ✨</div>
+    <div class="badge">⚖️ مرسوم مالي رسمي وعاطفي</div>
     <h1 class="main-title">اتفاقية الـ100 شيكل مع أسيل ❤️</h1>
     <p class="subtitle" id="step-indicator">المرحلة الأولى: فحص العرض المالي (1/3)</p>
 
     <!-- Progress Steps -->
-    <div class="progress-wrap">
-      <div id="bar-1" class="prog-bar active"></div>
-      <div id="bar-2" class="prog-bar"></div>
-      <div id="bar-3" class="prog-bar"></div>
+    <div class="progress-bar-container">
+      <div id="prog-1" class="progress-step active"></div>
+      <div id="prog-2" class="progress-step"></div>
+      <div id="prog-3" class="progress-step"></div>
     </div>
 
     <!-- ================= PAGE 1 ================= -->
-    <div id="page-1" style="display: block;">
+    <div id="page-1" class="step-page active">
       <div class="formal-box">
         <h3>عزيزتنا أسيل ❤️</h3>
         <p>
@@ -545,124 +593,110 @@
         </p>
       </div>
 
-      <p style="font-size: 0.95rem; font-weight: 800; color: #475569; margin-bottom: 14px;">
+      <p style="font-size: 0.92rem; font-weight: 800; color: #475569; margin-bottom: 12px;">
         اضغطي على طريقة الاستلام المفضلة 👇
       </p>
 
       <div class="cards-grid">
-        <!-- Cash (Rejection) -->
-        <button type="button" class="card-btn" onclick="chooseCash()">
+        <!-- 1. Cash Button -->
+        <button type="button" class="choice-card" onclick="window.openCashModal()">
           <div class="card-icon">💵</div>
           <div class="card-title">نقداً (كاش)</div>
         </button>
 
-        <!-- App (Direct Transition) -->
-        <button type="button" class="card-btn" onclick="chooseApp()">
+        <!-- 2. App Button -->
+        <button type="button" id="card-app-btn" class="choice-card" onclick="window.selectAppMode()">
           <div class="card-icon">📱</div>
           <div class="card-title">عبر التطبيق</div>
+        </button>
+      </div>
+
+      <!-- Terms Box (Reveals smoothly on clicking App) -->
+      <div id="terms-section" class="terms-card">
+        <h4>مسموح، ولكن وفق الشروط والأحكام:</h4>
+        <ul>
+          <li><span>1.</span> ممنوع تحويل المبلغ إلى حسابك الشخصي ❌</li>
+          <li><span>2.</span> إحنا بنقوم بالشراء عنك مباشرة 🛍️</li>
+          <li><span>3.</span> إلك حرية اختيار مشترياتك كاملة ✨</li>
+          <li><span>4.</span> الميزانية الإجمالية 100 شيكل فقط 💰</li>
+        </ul>
+        <button type="button" class="btn btn-primary" onclick="window.navigateTo(2)">
+          <span>موافقة والانتقال للاختيارات ❤️</span>
         </button>
       </div>
     </div>
 
     <!-- ================= PAGE 2 ================= -->
-    <div id="page-2" style="display: none;">
-      
-      <!-- Terms Banner -->
-      <div class="terms-banner">
-        <b style="color: #7e22ce; font-size: 0.95rem;">مسموح عبر التطبيق، ولكن وفق الشروط:</b><br>
-        1. ممنوع تحويل المبلغ لحسابك الشخصي ❌<br>
-        2. إحنا بنشتري عنك مباشرة 🛍️<br>
-        3. إلك حرية اختيار مشترياتك بالكامل ✨<br>
-        4. الميزانية الإجمالية 100 شيكل فقط 💰
-      </div>
-
-      <h2 style="font-size: 1.35rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
+    <div id="page-2" class="step-page">
+      <h2 style="font-size: 1.3rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
         اختاري مشترياتك يا أسيل 🛍️
       </h2>
-      <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 14px;">
+      <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 14px;">
         إلك 100 شيكل، اختاري أكثر من خيار حسب رغبتك!
       </p>
 
-      <div>
-        <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء كاسة ☕')">
-          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
-            <span style="font-size: 1.4rem;">☕</span>
+      <div id="shopping-list">
+        <button type="button" class="shopping-item" onclick="window.toggleItem(this, 'شراء كاسة ☕')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">☕</span>
             <span>شراء كاسة</span>
           </div>
-          <div class="check-box">✓</div>
+          <div class="checkbox-box">✓</div>
         </button>
 
-        <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء منتوفلي 🍫')">
-          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
-            <span style="font-size: 1.4rem;">🍫</span>
+        <button type="button" class="shopping-item" onclick="window.toggleItem(this, 'شراء منتوفلي 🍫')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">🍫</span>
             <span>شراء منتوفلي</span>
           </div>
-          <div class="check-box">✓</div>
+          <div class="checkbox-box">✓</div>
         </button>
 
-        <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء إكسسوارات 💍')">
-          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
-            <span style="font-size: 1.4rem;">💍</span>
+        <button type="button" class="shopping-item" onclick="window.toggleItem(this, 'شراء إكسسوارات 💍')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">💍</span>
             <span>شراء إكسسوارات</span>
           </div>
-          <div class="check-box">✓</div>
+          <div class="checkbox-box">✓</div>
         </button>
 
-        <button type="button" class="shopping-btn" onclick="selectProduct(this, 'شراء أسبريه عرق 🥤')">
-          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
-            <span style="font-size: 1.4rem;">🥤</span>
+        <button type="button" class="shopping-item" onclick="window.toggleItem(this, 'شراء أسبريه عرق 🥤')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">🥤</span>
             <span>شراء أسبريه عرق</span>
           </div>
-          <div class="check-box">✓</div>
+          <div class="checkbox-box">✓</div>
         </button>
 
-        <button type="button" class="shopping-btn" onclick="selectProduct(this, 'مشتريات أخرى 🎁')">
-          <div style="display: flex; align-items: center; gap: 12px; font-weight: 800;">
-            <span style="font-size: 1.4rem;">🎁</span>
+        <button type="button" class="shopping-item" onclick="window.toggleItem(this, 'مشتريات أخرى 🎁')">
+          <div class="item-label">
+            <span style="font-size: 1.25rem;">🎁</span>
             <span>مشتريات أخرى</span>
           </div>
-          <div class="check-box">✓</div>
+          <div class="checkbox-box">✓</div>
         </button>
       </div>
 
-      <!-- Custom Input -->
+      <!-- Custom Proposal Option -->
       <div class="custom-box">
-        <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #86198f; font-size: 0.9rem; cursor: pointer;">
-          <input type="checkbox" id="custom-chk" onchange="toggleCustom()" style="accent-color: #a855f7; width: 19px; height: 19px;">
+        <label style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #86198f; font-size: 0.88rem; cursor: pointer;">
+          <input type="checkbox" id="custom-toggle" onchange="window.toggleCustomArea()" style="accent-color: #a855f7; width: 18px; height: 18px;">
           <span>خيارات أخرى لا تعجبني، عندي اقتراح خاص!</span>
         </label>
-        <textarea id="custom-txt" class="custom-textarea" rows="3" placeholder="اكتبي شو نفسك نشتريلك..."></textarea>
+        <textarea id="custom-text" class="custom-textarea" rows="3" placeholder="اكتبي شو نفسك نشتريلك..."></textarea>
       </div>
 
       <div style="display: flex; gap: 10px;">
-        <button type="button" class="btn btn-secondary" style="width: 35%;" onclick="showPage(1)">
+        <button type="button" class="btn btn-secondary" style="width: 35%;" onclick="window.navigateTo(1)">
           رجوع
         </button>
-        <button type="button" class="btn btn-primary" style="flex: 1;" onclick="showPage(3)">
+        <button type="button" class="btn btn-primary" style="flex: 1;" onclick="window.navigateTo(3)">
           التالي للاتفاق 👈
         </button>
       </div>
     </div>
 
     <!-- ================= PAGE 3 ================= -->
-    <div id="page-3" style="display: none;">
-      
-      <div id="pre-agree">
-        <h2 style="font-size: 1.4rem; font-weight: 900; color: #1e293b; margin-bottom: 4px;">
-          إتمام الاتفاق 🤝❤️
-        </h2>
-        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 16px;">
-          الملخص النهائي لبنود المعاهدة المالية الرسمية
-        </p>
-
-        <div class="summary-card">
-          <div class="summary-row">
-            <span style="color: #64748b; font-weight: 700;">الميزانية:</span>
-            <span style="font-weight: 900; color: #e11d48; font-size: 1.05rem;">100 شيكل (ILS)</span>
-          </div>
-          <div class="summary-row">
-            <span style="color: #64748b; font-weight: 700;">طريقة الدفع:</span>
-            <span style="font-weight: 800;">شراء مباشر منا 🛍️</span>
-          </div>
-          <div class="summary-row">
-            <span style="color: #64748b
+    <div id="page-3" class="step-page">
+      <div id="pre-celebration">
+        <h2 style="font-size
